@@ -1,0 +1,128 @@
+/* Common Styles */
+@font-face {
+    font-family: "iransSansR";
+    src: url("../fonts/iransansdnweb.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "iransSansB";
+    src: url("../fonts/iransansdnwebbold.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "iransSansL";
+    src: url("../fonts/iransansdnweblight.woff2") format("woff2");
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'iransSansR';
+}
+/* Common Styles */
+
+/* Navbar */
+.site-logo {
+    width: 40px;
+}
+@media (min-width: 576px) {
+    .dropdown:hover > .dropdown-menu {
+        display: block;
+        margin-top: 0px;
+    }
+}
+/* Navbar */
+
+/* Links */
+.links-item {
+    transition: all .3s ease-in-out;
+}
+.links-item:hover {
+    background-color: var(--bs-success);
+    color: white !important;
+}
+.user-profile p {
+    font-family: "iransSansB"!important;
+    font-size: 12px;
+    transition: .3s ease-in-out;
+}
+.user-profile i {
+    transition: .3s ease-in-out;
+}
+.user-profile:hover p {
+    color: rgb(224, 51, 51);
+}
+.user-profile:hover i {
+    color: rgb(224, 51, 51);
+}
+/* Links */
+
+/* content */
+.news-image {
+    width: 200px;
+    object-fit: cover;
+}
+/* content */
+
+/* Single */
+.single-content-wrapper p {
+    line-height: 35px !important;
+    text-align: justify;
+}
+.post-comment {
+    background-color: #F8F9FA;
+}
+.user-info img {
+    width: 100px;
+    object-fit: cover;
+}
+.user-avatar img {
+    width: 80px;
+    object-fit: cover;
+}
+/* Single */
+/* register */
+.company-logo img {
+    width: 120px;
+    object-fit: cover;
+}
+/* register */
+/* profile */
+.profile-img img {
+    width: 120px;
+    object-fit: cover;
+}
+.full-name {
+    font-family: 'iransSansB', sans-serif;
+}
+.profile-detail .info > p:nth-child(1) {
+    font-family: 'iransSansB', sans-serif;
+}
+.change-password-title {
+    font-family: 'iransSansB', sans-serif;
+    font-size: 28px;
+}
+/* profile */
+/* ticketing */
+.ticket-item:hover {
+    box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.15);
+    transform: translateY(-2px);
+    transition: all 0.2s ease-in-out;
+}
+.ticket-title {
+    font-family: 'iransSansB', sans-serif;
+}
+.ticket-item-profile img {
+    width: 90px;
+    object-fit: cover;
+}
+.ticket-item-profile .username {
+    font-family: 'iransSansB', sans-serif;
+}
+.ticket-message {
+    text-align: justify;
+    line-height: 32px;
+}
+/* ticketing */

@@ -1,0 +1,56 @@
+{% extends "archive/archive_base.html" %}
+{% load static %}
+
+{% block title %} اخبار آوه سینا - گروه داروئی آژند {% endblock  %}
+
+{% block archive_title %}
+    {{ article.title }}
+{% endblock  %}
+
+{% block body %}
+<div class="col-md-9">
+    <div class="single-content-wrapper bg-white rounded shadow-sm p-4">
+        {{ article.content|safe }}
+    </div>
+
+    <div class="post-comment rounded shadow-sm p-4 my-4">
+        <form method="post" action="{% url 'avicenna:article_comments' article.id %}" class="send-comment">
+            {% csrf_token %}
+            <div class="send-comment-content d-flex align-items-center">
+                <div class="user-info d-flex flex-column align-items-center me-3">
+                    {% if user.profile_image %}
+                        <img src="{{ user.profile_image.url }}" class="rounded-pill shadow-sm border-3" alt="{{ user.username }}">
+                    {% else %}
+                        <img src="{% static 'img/user.png' %}" class="rounded-pill shadow-sm border-3" alt="{{ user.username }}">
+                    {% endif %}
+                    <p class="username mt-2 fw-bold">{{ user.username }}</p>
+                </div>
+
+                <div class="my-3 w-100">
+                    <textarea name="comment" id="comment" rows="5" placeholder="دیدگاه خود را بنویسید" class="form-control"></textarea>
+                </div>
+            </div>
+            <div class="d-flex">
+                <button type="submit" class="btn btn-outline-success ms-auto">ارسال دیدگاه</button>
+            </div>
+        </form>
+        <hr>
+
+        <div class="comment-wrapper">
+            {% for comment in comments %}
+            <div class="comment card p-3 w-75 mx-auto mt-4 d-flex flex-row">
+                <div class="user-avatar me-3">
+                    <img src="{% static 'img/user.png' %}" class="rounded-pill border-2 shadow-sm" alt="{{ comment.user.username }}">
+                </div>
+                <div class="comment-body d-flex flex-column">
+                    <p class="username fw-bold">{{ comment.user.username }}</p>
+                    <p class="message">
+                        {{ comment.comment }}
+                    </p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock  %}

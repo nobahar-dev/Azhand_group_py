@@ -1,0 +1,6 @@
+.ck.ck-editor__editable_inline {
+    direction: rtl!important;
+    text-align: right!important;
+    min-height: 800px!important;
+    color: #000;
+}

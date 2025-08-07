@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %} درخواست کار از واحد انفورماتیک - گروه داروئی آژند {% endblock  %}
+
+{% block links %}{% endblock  %}
+
+{% block body %}
+<section class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="profile-info card d-flex flex-column align-items-center justify-content-center p-3 my-4">
+                <div class="profile-img mt-3">
+                    {% if user.image %}
+                        <img src="{{ user.image.url }}" class="rounded-pill shadow-sm" alt="{{ user.username }}">
+                    {% else %}
+                        <img src="{% static 'img/user.png' %}" class="rounded-pill shadow-sm" alt="{{ user.username }}">
+                    {% endif %}
+                </div>
+                <p class="full-name fs-4 mt-4">{{ user.first_name }} {{ user.last_name }}</p>
+                <p class="position">{{ user.work_position }}</p>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="send-ticket-form card p-5 my-4">
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="mb-4">
+                        <label for="title" class="form-label">عنوان تیکت</label>
+                        <input type="text" class="form-control" name="title" id="title" required>
+                    </div>
+
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <select class="form-select col-md-6" name="company" id="company" required>
+                                <option disabled selected>انتخاب شرکت</option>
+                                {% for value, label in form.fields.company.choices %}
+                                    <option value="{{ value }}">{{ label }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <div class="col-md-6">
+                            <select class="form-select col-md-6" name="unit" id="unit" required>
+                                <option disabled selected>انتخاب واحد</option>
+                                {% for value, label in form.fields.unit.choices %}
+                                    <option value="{{ value }}">{{ label }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="description" class="form-label">متن درخواست شما</label>
+                        <textarea name="description" id="description" class="form-control" rows="10" required></textarea>
+                    </div>
+
+                    <div class="d-flex">
+                        <button type="submit" class="btn btn-outline-success ms-auto">ارسال تیکت</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock  %}

@@ -1,0 +1,59 @@
+{% load static %}
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg bg-white small shadow-sm rounded main-nav m-3">
+    <div class="container align-content-center">
+        <a href="{% url 'home:home_page' %}" class="navbar-brand">
+            <img src="{% static 'img/ajand_logo.png' %}" alt="گروه داروئی آژند" class="img-fluid site-logo">
+            <span class="text-dark fw-bold fs-4">گروه داروئی آژند</span>
+        </a>
+
+        <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#site_navbar"
+            aria-controls="site_navbar" aria-expanded="false" aria-label="toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse d-flex align-items-center" id="site_navbar">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 fw-semibold">
+                <li class="nav-item mx-2">
+                    <a href="{% url 'home:home_page' %}" class="nav-link text-dark fs-6">صفحه اصلی</a>
+                </li>
+
+                <li class="nav-item mx-2">
+                    <a href="{% url 'avicenna:avicenna_page' %}" class="nav-link text-dark fs-6">کارخانه آوه سینا</a>
+                </li>
+
+                <li class="nav-item mx-2">
+                    <a href="{% url 'arasto:arasto_page' %}" class="nav-link text-dark fs-6">کارخانه ارسطو</a>
+                </li>
+
+                <li class="nav-item mx-2">
+                    <a href="{% url 'safety:safety_page' %}" class="nav-link text-dark fs-6">ایمنی و بهداشت</a>
+                </li>
+
+                <li class="nav-item mx-2">
+                    <a href="{% url 'office:office_page' %}" class="nav-link text-dark fs-6">واحد اداری</a>
+                </li>
+                <li class="nav-item mx-2">
+                    <a href="{% url 'human:human_page' %}" class="nav-link text-dark fs-6">واحد منابع انسانی</a>
+                </li>
+
+                <li class="nav-item dropdown mx-2">
+                    <a href="{% url 'informatics:informatics_page' %}" class="nav-link dropdown-toggle text-dark fs-6" aria-expanded='false'>
+                        واحد انفورماتیک
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{% url 'ticketing:request_ticket' %}" class="dropdown-item">درخواست کار</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        
+        <div class="ms-auto d-flex align-items-center">
+            <a href="{% url 'accounts:user_profile' %}" class="user-profile nav-link text-dark fs-4 d-flex flex-column justify-content-center align-items-center">
+                <i class="bi bi-person-circle" ></i>
+                <p>حساب کاربری</p>
+            </a>
+        </div>
+    </div>
+</nav>
+<!-- Navbar -->

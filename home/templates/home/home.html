@@ -1,0 +1,194 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %} صفحه اصلی - گروه داروئی آژند {% endblock  %}
+{% block body %}
+<section class="container mt-5">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="avicenna-news bg-white rounded shadow-sm">
+                <div class="news-title border-1 border-bottom text-dark p-3 d-flex justify-content-between">
+                    <h3 class="fw-bold">اخبار آوه سینا</h3>
+                    <a href="{% url 'avicenna:avicenna_page' %}" class="btn btn-outline-success">
+                        مشاهده همه
+                    </a>
+                </div>
+
+                <div class="news-wrapper">
+                    {% for article in avicenna_articles %}
+                    <a href="{% url 'avicenna:article_detail' article.id %}" class="text-decoration-none text-dark">
+                        <article class="news-content d-flex border-1 border-bottom p-3">
+                            {% if article.image %}
+                                <img src="{{ article.image.url }}" alt="{{ article.title }}" class="img-fluid news-image rounded shadow-sm  border border-1">
+                            {% else %}
+                                <img src="{% static 'img/article.jpg' %}" alt="{{ article.title }}" class="img-fluid news-image rounded shadow-sm  border border-1">
+                            {% endif %}
+                            <div class="article-title ms-3">
+                                <h2 class="text-dark fs-4 fw-bold"> {{ article.title }} </h2>
+                                <p class="article-content text-secondary fs-6">
+                                    {{ article.content|truncatewords:"30"|safe }}
+                                </p>
+                            </div>
+                        </article>
+                    </a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="avicenna-news bg-white rounded shadow-sm">
+                <div class="news-title border-1 border-bottom text-dark p-3 d-flex justify-content-between">
+                    <h3 class="fw-bold">اخبار ارسطو</h3>
+                    <a href="{% url 'arasto:arasto_page' %}" class="btn btn-outline-success">
+                        مشاهده همه
+                    </a>
+                </div>
+
+                <div class="news-wrapper">
+                    {% for article in arasto_articles %}
+                    <a href="{% url 'arasto:article_detail' article.id %}" class="text-decoration-none text-dark">
+                        <article class="news-content d-flex border-1 border-bottom p-3">
+                            {% if article.image %}
+                                <img src="{{ article.image.url }}" alt="{{ article.title }}" class="img-fluid news-image rounded shadow-sm  border border-1">
+                            {% else %}
+                                <img src="{% static 'img/article.jpg' %}" alt="{{ article.title }}" class="img-fluid news-image rounded shadow-sm  border border-1">
+                            {% endif %}
+                            <div class="article-title ms-3">
+                                <h2 class="text-dark fs-4 fw-bold">{{ article.title }}</h2>
+                                <p class="article-content text-secondary fs-6">
+                                    {{ article.content|truncatewords:"30"|safe }}
+                                </p>
+                            </div>
+                        </article>
+                    </a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-5">
+        <div class="col-md-6">
+            <div class="avicenna-news bg-white rounded shadow-sm">
+                <div class="news-title border-1 border-bottom text-dark p-3 d-flex justify-content-between">
+                    <h3 class="fw-bold">انفورماتیک</h3>
+                    <a href="{% url 'informatics:informatics_page' %}" class="btn btn-outline-success">
+                        مشاهده همه
+                    </a>
+                </div>
+
+                <div class="news-wrapper">
+                    {% for article in informatics_articles %}
+                    <a href="{% url 'informatics:article_detail' article.id %}" class="text-decoration-none text-dark">
+                        <article class="news-content d-flex border-1 border-bottom p-3">
+                            {% if article.image %}
+                                <img src="{{ article.image.url }}" alt="{{ article.title }}" class="img-fluid news-image rounded shadow-sm  border border-1">
+                            {% else %}
+                                <img src="{% static 'img/article.jpg' %}" alt="{{ article.title }}" class="img-fluid news-image rounded shadow-sm  border border-1">
+                            {% endif %}
+                            <div class="article-title ms-3">
+                                <h2 class="text-dark fs-4 fw-bold">{{ article.title }}</h2>
+                                <p class="article-content text-secondary fs-6">
+                                    {{ article.content|truncatewords:"30"|safe }}
+                                </p>
+                            </div>
+                        </article>
+                    </a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="avicenna-news bg-white rounded shadow-sm">
+                <div class="news-title border-1 border-bottom text-dark p-3 d-flex justify-content-between">
+                    <h3 class="fw-bold">ایمنی و بهداشت</h3>
+                    <a href="{% url 'safety:safety_page' %}" class="btn btn-outline-success">
+                        مشاهده همه
+                    </a>
+                </div>
+
+                <div class="news-wrapper">
+                    {% for article in safety_articles %}
+                    <a href="{% url 'safety:article_detail' article.id %}" class="text-decoration-none text-dark">
+                        <article class="news-content d-flex border-1 border-bottom p-3">
+                            {% if article.image %}
+                                <img src="{{ article.image.url }}" alt="{{ article.title }}" class="img-fluid news-image rounded shadow-sm  border border-1">
+                            {% else %}
+                                <img src="{% static 'img/article.jpg' %}" alt="{{ article.title }}" class="img-fluid news-image rounded shadow-sm  border border-1">
+                            {% endif %}
+                            <div class="article-title ms-3">
+                                <h2 class="text-dark fs-4 fw-bold">{{ article.title }}</h2>
+                                <p class="article-content text-secondary fs-6">
+                                    {{ article.content|truncatewords:"30"|safe }}
+                                </p>
+                            </div>
+                        </article>
+                    </a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-5 mb-5">
+        <div class="col-md-6">
+            <div class="avicenna-news bg-white rounded shadow-sm">
+                <div class="news-title border-1 border-bottom text-dark p-3 d-flex justify-content-between">
+                    <h3 class="fw-bold">واحد اداری</h3>
+                    <a href="{% url 'office:office_page' %}" class="btn btn-outline-success">
+                        مشاهده همه
+                    </a>
+                </div>
+
+                <div class="news-wrapper">
+                    {% for article in office_articles %}
+                    <a href="{% url 'office:article_detail' article.id %}" class="text-decoration-none text-dark">
+                        <article class="news-content d-flex border-1 border-bottom p-3">
+                            {% if article.image %}
+                                <img src="{{ article.image.url }}" alt="{{ article.title }}" class="img-fluid news-image rounded shadow-sm  border border-1">
+                            {% else %}
+                                <img src="{% static 'img/article.jpg' %}" alt="{{ article.title }}" class="img-fluid news-image rounded shadow-sm  border border-1">
+                            {% endif %}
+                            <div class="article-title ms-3">
+                                <h2 class="text-dark fs-4 fw-bold">{{ article.title }}</h2>
+                                <p class="article-content text-secondary fs-6">
+                                    {{ article.content|truncatewords:"30"|safe }}
+                                </p>
+                            </div>
+                        </article>
+                    </a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="avicenna-news bg-white rounded shadow-sm">
+                <div class="news-title border-1 border-bottom text-dark p-3 d-flex justify-content-between">
+                    <h3 class="fw-bold">واحد منابع انسانی</h3>
+                    <a href="{% url 'human:human_page' %}" class="btn btn-outline-success">
+                        مشاهده همه
+                    </a>
+                </div>
+
+                <div class="news-wrapper">
+                    {% for article in human_articles %}
+                    <a href="{% url 'human:article_detail' article.id %}" class="text-decoration-none text-dark">
+                        <article class="news-content d-flex border-1 border-bottom p-3">
+                            {% if article.image %}
+                                <img src="{{ article.image.url }}" alt="{{ article.title }}" class="img-fluid news-image rounded shadow-sm  border border-1">
+                            {% else %}
+                            {% endif %}
+                            <div class="article-title ms-3">
+                                <h2 class="text-dark fs-4 fw-bold">{{ article.title }}</h2>
+                                <p class="article-content text-secondary fs-6">
+                                    {{ article.content|truncatewords:"30"|safe }}
+                                </p>
+                            </div>
+                        </article>
+                    </a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock  %}

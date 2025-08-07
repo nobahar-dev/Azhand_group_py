@@ -1,0 +1,48 @@
+{% extends "archive/archive_base.html" %}
+{% block title %} واحد اداری - گروه داروئی آژند {% endblock  %}
+{% block archive_title %} واحد اداری {% endblock  %}
+{% block body %}
+<div class="col-md-9">
+    <div class="article-wrapper bg-white rounded shadow-sm mb-4">
+        {% for article in articles %}
+        <a href="{% url 'office:article_detail' article.id %}" class="text-decoration-none text-dark">
+            <article class="news-content d-flex border-1 border-bottom p-3">
+                {% if article.image %}
+                <img src="{{ article.image.url }}" alt="{{ article.title }}" class="img-fluid news-image rounded shadow-sm  border border-1">
+                {% endif %}
+                <div class="article-title ms-3">
+                    <h2 class="text-dark fs-4 fw-bold">{{ article.title }}</h2>
+                    <p class="article-content text-secondary fs-6">
+                        {{ article.content|truncatewords_html:30|safe }}
+                    </p>
+                </div>
+            </article>
+        </a>
+        {% endfor %}
+    </div>
+    <nav aria-label="Page" class="d-flex justify-content-center">
+        <ul class="pagination">
+            {% if articles.has_previous %}
+            <li class="page-item"><a href="?page={{ articles.previous_page_number }}" class="page-link">قبلی</a></li>
+            {% else %}
+            <li class="page-item disabled"><span class="page-link">قبلی</span></li>
+            {% endif %}
+
+            {% for num in articles.paginator.page_range %}
+                {% if articles.number == num %}
+                    <li class="page-item active"><a href="?page={{ num }}" class="page-link">{{ num }}</a></li>
+                {% elif num > articles.number|add:"-3" and num < articles.number|add:"3" %}
+                    <li class="page-item"><a href="?page={{ num }}" class="page-link">{{ num }}</a></li>
+                {% endif %}
+            {% endfor %}
+            
+            
+            {% if articles.has_next %}
+            <li class="page-item"><a href="?page={{ articles.next_page_number }}" class="page-link">بعدی</a></li>
+            {% else %}
+            <li class="page-item disabled"><span class="page-link">بعدی</span></li>
+            {% endif %}
+        </ul>
+    </nav>
+</div>
+{% endblock %}

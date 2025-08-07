@@ -1,0 +1,127 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %} درخواست کار از واحد انفورماتیک - گروه داروئی آژند {% endblock title %}
+
+{% block links %}{% endblock links %}
+
+{% block body %}
+    <section class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="profile-info card d-flex flex-column align-items-center justify-content-center p-2 my-4">
+                    <div class="profile-img mt-3">
+                        {% if user.image %}
+                            <img src="{{ user.image.url }}" class="rounded-pill shadow-sm" alt="{{ user.username }}">
+                        {% else %}
+                            <img src="{% static 'img/user.png' %}" class="rounded-pill shadow-sm" alt="{{ user.username }}">
+                        {% endif %}
+                    </div>
+                    <p class="full-name fs-4 mt-4">{{ user.first_name }} {{ user.last_name }}</p>
+                    <p class="position">{{ user.work_position }}</p>
+                </div>
+            </div>
+            <div class="col-md-9">
+                <div class="detail-ticket-wrapper card p-5 my-4">
+                    <h3 class="ticket-title mb-4">{{ ticket.title }}</h3>
+                    <h6 class="mb-5">شناسه تیکت: {{ ticket.id }}</h6>
+
+                    <div class="client-ticket card rounded-3 shadow-sm bg-primary-subtle px-4 py-3 border-0 mb-3">
+                        <div class="ticket-item-title d-flex justify-content-between align-items-center">
+                            <div class="ticket-item-profile d-flex justify-content-center align-items-center">
+                                {% if ticket.user.image %}
+                                    <img src="{{ ticket.user.image.url }}" class="rounded-pill shadow-sm" alt="{{ ticket.user.username }}">
+                                {% else %}
+                                    <img src="{% static 'img/user.png' %}" class="rounded-pill shadow-sm" alt="{{ ticket.user.username }}">
+                                {% endif %}
+                                <div class="d-flex flex-column ms-2">
+                                    <p class="username fs-5">{{ ticket.user.username }}</p>
+                                    <p class="work-position">{{ ticket.user.work_position }}</p>
+                                </div>
+                            </div>
+
+                            <div class="date">
+                                {{ ticket.date_created }}
+                            </div>
+                        </div>
+                        <hr>
+                        <p class="ticket-message">
+                            {{ ticket.description }}
+                        </p>
+                    </div>
+
+                    {% if replies.exists %}
+                        {% for reply in replies %}
+                            {% if reply.user.is_superuser %}
+                                <div class="master-ticket card rounded-3 shadow-sm bg-success-subtle px-4 py-3 border-0 mb-3">
+                                    <div class="ticket-item-title d-flex justify-content-between align-items-center">
+                                        <div class="ticket-item-profile d-flex justify-content-center align-items-center">
+                                            {% if reply.user.image %}
+                                                <img src="{{ reply.user.image.url }}" class="rounded-pill shadow-sm" alt="{{ reply.user.username }}">
+                                            {% else %}
+                                                <img src="{% static 'img/user.png' %}" class="rounded-pill shadow-sm" alt="{{ reply.user.username }}">
+                                            {% endif %}
+                                            <div class="d-flex flex-column ms-2">
+                                                <p class="username fs-5">{{ reply.user.username }}</p>
+                                                <p class="work-position">{{ reply.user.work_position }}</p>
+                                            </div>
+                                        </div>
+
+                                        <div class="date">
+                                            {{ reply.date_created }}
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <p class="ticket-message">
+                                        {{ reply.message }}
+                                    </p>
+                                </div>
+                            {% else %}
+                                <div class="client-ticket card rounded-3 shadow-sm bg-primary-subtle px-4 py-3 border-0 mb-3">
+                                    <div class="ticket-item-title d-flex justify-content-between align-items-center">
+                                        <div class="ticket-item-profile d-flex justify-content-center align-items-center">
+                                            {% if reply.user.image %}
+                                                <img src="{{ reply.user.image.url }}" class="rounded-pill shadow-sm" alt="{{ reply.user.username }}">
+                                            {% else %}
+                                                <img src="{% static 'img/user.png' %}" class="rounded-pill shadow-sm" alt="{{ reply.user.username }}">
+                                            {% endif %}
+                                            <div class="d-flex flex-column ms-2">
+                                                <p class="username fs-5">{{ reply.user.username }}</p>
+                                                <p class="work-position">{{ reply.user.work_position }}</p>
+                                            </div>
+                                        </div>
+
+                                        <div class="date">
+                                            {{ reply.date_created }}
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <p class="ticket-message">
+                                        {{ reply.message }}
+                                    </p>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
+
+                </div>
+
+                <div class="card p-4 mb-3">
+                    <h3 class="ticket-title mb-4">پیگیری و ارسال پاسخ</h3>
+                    <form method='post'>
+                        {% csrf_token %}
+                        <div class="mb-4">
+                            <label for="message" class="form-label">متن درخواست شما</label>
+                            <textarea name="message" id="message" class="form-control" rows="10"></textarea>
+                        </div>
+
+                        <div class="d-flex">
+                            <button type="submit" class="btn btn-outline-success ms-auto">ارسال تیکت</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock body %}
