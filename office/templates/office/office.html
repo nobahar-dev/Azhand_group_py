@@ -1,4 +1,5 @@
 {% extends "archive/archive_base.html" %}
+{% load static %}
 {% block title %} واحد اداری - گروه داروئی آژند {% endblock  %}
 {% block archive_title %} واحد اداری {% endblock  %}
 {% block body %}
@@ -8,7 +9,9 @@
         <a href="{% url 'office:article_detail' article.id %}" class="text-decoration-none text-dark">
             <article class="news-content d-flex border-1 border-bottom p-3">
                 {% if article.image %}
-                <img src="{{ article.image.url }}" alt="{{ article.title }}" class="img-fluid news-image rounded shadow-sm  border border-1">
+                    <img src="{{ article.image.url }}" alt="{{ article.title }}" class="img-fluid news-image rounded shadow-sm  border border-1">
+                {% else %}
+                    <img src="{% static 'img/article.jpg' %}" alt="{{ article.title }}" class="img-fluid news-image rounded shadow-sm  border border-1">
                 {% endif %}
                 <div class="article-title ms-3">
                     <h2 class="text-dark fs-4 fw-bold">{{ article.title }}</h2>

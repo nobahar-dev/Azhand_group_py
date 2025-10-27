@@ -3,6 +3,7 @@ from .forms import *
 from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+import ghasedak_sms
 
 
 def user_login(request):

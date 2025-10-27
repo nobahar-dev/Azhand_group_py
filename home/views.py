@@ -5,6 +5,7 @@ from human.models import HumanArticle
 from office.models import OfficeArticle
 from informatics.models import InformaticsArticle
 from safety.models import SafetyArticles
+from .models import *
 
 
 def home_page(request):
@@ -15,12 +16,15 @@ def home_page(request):
     informatics_articles = InformaticsArticle.objects.all().order_by('-date_created')[:3]
     safety_articles = SafetyArticles.objects.all().order_by('-date_created')[:3]
     
+    modal = Modal.objects.last()
+    
     context = {
         'avicenna_articles': avicenna_articles,
         'arasto_articles': arasto_articles,
         'human_articles': human_articles,
         'office_articles': office_articles,
         'informatics_articles': informatics_articles,
-        'safety_articles': safety_articles
+        'safety_articles': safety_articles,
+        'modal': modal
     }
     return render(request, 'home/home.html', context)

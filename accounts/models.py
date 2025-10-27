@@ -39,7 +39,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     def __str__(self):
         return self.username
     
-    def has_perm(self, perm, obj = ...):
+    def has_perm(self, perm, obj=None):
         return super().has_perm(perm, obj)
     
     def has_module_perms(self, app_label):
